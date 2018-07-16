@@ -1,6 +1,12 @@
 @import 'styles/_colors';
 
 .Home {
-  background-color: $lightest;
-  color: $melapix;
+  background: url(./images/homeBackground.jpg) no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100vh;
+    width: 100%;
+    color: $lightest;
 }
