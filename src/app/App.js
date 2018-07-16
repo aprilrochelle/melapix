@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
 // import AllPhotos from '../components/AllPhotos/AllPhotos';
 import Home from '../components/Home/Home';
+// import Login from '../components/Login/Login';
+// import Register from '../components/Register/Register';
 // import MyCollection from '../components/MyCollection/MyCollection';
 import Navbar from '../components/Navbar/Navbar';
 // import Pics from '../components/Pics/Pics';
@@ -25,6 +27,8 @@ class App extends Component {
           </div>
         </BrowserRouter>
         {/* <AllPhotos />
+        <Login />
+        <Register />
         <MyCollection />
         <Pics />
         <SinglePic /> */}
