@@ -9,6 +9,8 @@ import Navbar from '../components/Navbar/Navbar';
 // import Pics from '../components/Pics/Pics';
 // import SinglePic from '../components/SinglePic/SinglePic';
 import './App.css';
+import fbConnection from '../firebaseReq/fbConnect';
+fbConnection();
 
 const PrivateRoute = ({component: Component, authed, ...rest}) => {
   return (
@@ -51,7 +53,7 @@ class App extends Component {
 
   render () {
     return (
-      <div className="App">
+      <div className="App text-center">
         <BrowserRouter>
           <div>
             <Navbar />
