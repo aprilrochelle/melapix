@@ -1,9 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import auth from '../../firebaseReq/auth';
 import './Navbar.css';
 
 class Navbar extends React.Component {
   render () {
+    const { authed, rollOut } = this.props;
+    const logoutClick = () => {
+      auth.logoutUser();
+      rollOut();
+    };
+
     return (
       <div className="Navbar">
         <nav className="navbar navbar-inverse">
@@ -20,11 +27,32 @@ class Navbar extends React.Component {
               </Link>
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul className="nav navbar-nav navbar-right navbar-form">
-                <li>
-                  <Link to="/login">Login</Link>
-                </li>
-              </ul>
+              {
+                authed ? (
+                  <ul className="nav navbar-nav navbar-right navbar-form">
+                    <li>
+                      <Link to="/allphotos">Search All Photos</Link>
+                    </li>
+                    <li>
+                      <Link to="/mycollection">My Collection</Link>
+                    </li>
+                    <li>
+                      <button
+                        onClick={logoutClick}
+                        className="btn btn-success"
+                      >
+                        Log Out
+                      </button>
+                    </li>
+                  </ul>
+                ) : (
+                  <ul className="nav navbar-nav navbar-right navbar-form">
+                    <li>
+                      <Link to="/login">Login</Link>
+                    </li>
+                  </ul>
+                )
+              }
             </div>
           </div>
         </nav>
