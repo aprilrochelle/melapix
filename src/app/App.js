@@ -66,12 +66,19 @@ class App extends Component {
     this.removeListener();
   }
 
+  rollOut = () => {
+    this.setState({authed: false});
+  }
+
   render () {
     return (
       <div className="App text-center">
         <BrowserRouter>
           <div>
-            <Navbar />
+            <Navbar
+              authed={this.state.authed}
+              rollOut={this.rollOut}
+            />
             <div className="container">
               <div className="row">
                 <Switch>
