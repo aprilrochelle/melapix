@@ -5,10 +5,9 @@ import AllPhotos from '../components/AllPhotos/AllPhotos';
 import Home from '../components/Home/Home';
 import Login from '../components/Login/Login';
 import Register from '../components/Register/Register';
-// import MyCollection from '../components/MyCollection/MyCollection';
+import MyCollection from '../components/MyCollection/MyCollection';
 import Navbar from '../components/Navbar/Navbar';
-// import Pics from '../components/Pics/Pics';
-// import SinglePic from '../components/SinglePic/SinglePic';
+import SinglePic from '../components/SinglePic/SinglePic';
 import './App.css';
 import fbConnection from '../firebaseReq/fbConnect';
 fbConnection();
@@ -98,17 +97,21 @@ class App extends Component {
                     authed={this.state.authed}
                     component={AllPhotos}
                   />
+                  <PrivateRoute
+                    path="/mycollection"
+                    authed={this.state.authed}
+                    component={MyCollection}
+                  />
+                  <PrivateRoute
+                    path="/singlepic/:id"
+                    authed={this.state.authed}
+                    component={SinglePic}
+                  />
                 </Switch>
               </div>
             </div>
           </div>
         </BrowserRouter>
-        {/*
-        <Login />
-        <Register />
-        <MyCollection />
-        <Pics />
-        <SinglePic /> */}
       </div>
     );
   }
