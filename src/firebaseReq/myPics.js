@@ -1,0 +1,24 @@
+import axios from 'axios';
+import constants from '../constants';
+
+const getMyPics = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${constants.firebaseConfig.databaseURL}/myCollection.json?orderBy="uid"&equalTo="${id}"`)
+      .then((res) => {
+        const myPics = [];
+        if (res.data !== null) {
+          Object.keys(res.data).forEach(key => {
+            res.data[key].id = key;
+            myPics.push(res.data[key]);
+          });
+        }
+        resolve(myPics);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default { getMyPics };
