@@ -19,6 +19,12 @@ class MyCollection extends React.Component {
       });
   }
 
+  deleteClick = (e) => {
+    const id = e.target.id;
+
+    console.error(id);
+  }
+
   render () {
     const myPicComponents = this.state.myPics.map(pic => {
       const image = require(`./../../images/${pic.image}`);
@@ -34,6 +40,7 @@ class MyCollection extends React.Component {
             </button>
             <button
               className="btn btn-danger"
+              onClick={this.deleteClick}
             >
               Delete
             </button>
