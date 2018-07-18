@@ -23,11 +23,9 @@ class MyCollection extends React.Component {
     const myPicComponents = this.state.myPics.map(pic => {
       const image = require(`./../../images/${pic.image}`);
       return (
-        <div className="Pics col-sm-3">
-          <div className="pic-card">
-            <img className="picture" src={image} alt={pic.name} />
-            <h4>{pic.name}</h4>
-          </div>
+        <div className="col-sm-4 pic-card" key={pic.id}>
+          <img className="picture" src={image} alt={pic.name} />
+          <h4>{pic.name}</h4>
         </div>
       );
     });

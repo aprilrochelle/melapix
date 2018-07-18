@@ -1,4 +1,6 @@
 import React from 'react';
+import auth from '../../firebaseReq/auth';
+import myPics from '../../firebaseReq/myPics';
 import picRequests from '../../firebaseReq/pics';
 import Pics from '../Pics/Pics';
 import './AllPhotos.css';
@@ -6,6 +8,23 @@ import './AllPhotos.css';
 class AllPhotos extends React.Component {
   state = {
     pics: [],
+    image: {},
+  }
+
+  addToMyPics = (imageDetails) => {
+    const newImage = {...this.state.image};
+    newImage.name = imageDetails.name;
+    newImage.image = imageDetails.image;
+    newImage.desc = imageDetails.desc;
+    newImage.uid = auth.getUid();
+    myPics
+      .postRequest(newImage)
+      .then(() => {
+
+      })
+      .catch((err) => {
+        console.error('error in order post', err);
+      });
   }
 
   componentDidMount = () => {
@@ -25,6 +44,7 @@ class AllPhotos extends React.Component {
         <Pics
           key={pic.id}
           details={pic}
+          addToMyPics={this.addToMyPics}
         />
       );
     });
