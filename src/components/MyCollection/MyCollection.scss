@@ -4,13 +4,19 @@
   background-color: $lightest;
   color: $medgrey;
 
-  h4 {
+  h5 {
     color: $dark;
+  }
+
+  .btn {
+    font-size: 12px;
+    padding: 2px 6px;
+    margin: 0 5px;
   }
 
   .pic-card {
     min-height: 350px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 
     .picture {
       max-width: 100%;
