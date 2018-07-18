@@ -1,5 +1,6 @@
 import React from 'react';
 import picRequests from '../../firebaseReq/pics';
+import Pics from '../Pics/Pics';
 import './AllPhotos.css';
 
 class AllPhotos extends React.Component {
@@ -21,20 +22,21 @@ class AllPhotos extends React.Component {
   render () {
     const picComponents = this.state.pics.map((pic) => {
       return (
-        <li>
-          <div className="col-md-3">
-            <h3>{pic.name}</h3>
-          </div>
-        </li>
+        <Pics
+          key={pic.id}
+          details={pic}
+        />
       );
     });
 
     return (
       <div className="AllPhotos col-md-12">
         <h1>All Photos</h1>
-        <ul className="pic-list">
-          {picComponents}
-        </ul>
+        <div className="pic-list">
+          <div className="row">
+            {picComponents}
+          </div>
+        </div>
       </div>
     );
   }

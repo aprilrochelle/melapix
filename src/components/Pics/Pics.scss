@@ -2,5 +2,19 @@
 
 .Pics {
   background-color: $lightest;
-  color: $melapix;
+  color: $medgrey;
+
+  h4 {
+    color: $dark;
+    text-align: left;
+  }
+
+  .picture {
+    max-width: 100%;
+    max-height: 70%;
+  }
+
+  .pic-card {
+    min-height: 500px;
+  }
 }
