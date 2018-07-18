@@ -25,7 +25,19 @@ class MyCollection extends React.Component {
       return (
         <div className="col-sm-4 pic-card" key={pic.id}>
           <img className="picture" src={image} alt={pic.name} />
-          <h4>{pic.name}</h4>
+          <h5>{pic.name}</h5>
+          <div className="collection-buttons">
+            <button
+              className="btn btn-warning"
+            >
+              Update
+            </button>
+            <button
+              className="btn btn-danger"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       );
     });
