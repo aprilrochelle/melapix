@@ -21,4 +21,17 @@ const getMyPics = (id) => {
   });
 };
 
-export default { getMyPics };
+const postRequest = (image) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${constants.firebaseConfig.databaseURL}/myCollection.json`, image)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default { getMyPics, postRequest };

@@ -3,7 +3,7 @@ import './Pics.css';
 
 class Pics extends React.Component {
   addToCollection = () => {
-
+    this.props.addToMyPics(this.props.details);
   }
 
   render () {
@@ -16,6 +16,7 @@ class Pics extends React.Component {
           <h4>{details.name}</h4>
           <button
             className="btn btn-success"
+            onClick={this.addToCollection}
           >
             Add to My Collection
           </button>
