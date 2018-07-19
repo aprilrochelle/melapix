@@ -5,28 +5,36 @@ import './MyCollection.css';
 
 class MyCollection extends React.Component {
   state = {
-    myPics: [],
+    pictures: [],
   }
 
   componentDidMount = () => {
     myPics
       .getMyPics(auth.getUid())
       .then((pics) => {
-        this.setState({ myPics: pics });
+        this.setState({ pictures: pics });
       })
       .catch((err) => {
         console.error(err);
       });
   }
 
-  deleteClick = (e) => {
-    const id = e.target.id;
-
-    console.error(id);
+  deleteClick = (id) => {
+    myPics
+      .deleteRequest(id)
+      .then(() => {
+        const {pictures} = this.state;
+        this.setState({pictures: pictures.filter(pic => {
+          return pic.id !== id;
+        })});
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   render () {
-    const myPicComponents = this.state.myPics.map(pic => {
+    const myPicComponents = this.state.pictures.map(pic => {
       const image = require(`./../../images/${pic.image}`);
       return (
         <div className="col-sm-4 pic-card" key={pic.id}>
@@ -40,7 +48,7 @@ class MyCollection extends React.Component {
             </button>
             <button
               className="btn btn-danger"
-              onClick={this.deleteClick}
+              onClick={() => this.deleteClick(pic.id)}
             >
               Delete
             </button>
