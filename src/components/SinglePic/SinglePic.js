@@ -1,5 +1,6 @@
 import React from 'react';
 import myPics from '../../firebaseReq/myPics';
+import UpdateForm from '../UpdateForm/UpdateForm';
 import './SinglePic.css';
 
 class SinglePic extends React.Component {
@@ -35,6 +36,9 @@ class SinglePic extends React.Component {
             <img src={path} alt={image.name} className="single-pic" />
             <h2>{image.name}</h2>
             <p>{image.desc}</p>
+          </div>
+          <div className="col-sm-3">
+            <UpdateForm />
           </div>
         </div>
       </div>
