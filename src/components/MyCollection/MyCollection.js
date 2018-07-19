@@ -35,6 +35,9 @@ class MyCollection extends React.Component {
 
   render () {
     const myPicComponents = this.state.pictures.map(pic => {
+      const singlePicClick = () => {
+        this.props.history.push(`/singlepic/${pic.id}`);
+      };
       const image = require(`./../../images/${pic.image}`);
       return (
         <div className="col-sm-4 pic-card" key={pic.id}>
@@ -43,6 +46,7 @@ class MyCollection extends React.Component {
           <div className="collection-buttons">
             <button
               className="btn btn-warning"
+              onClick={singlePicClick}
             >
               Update
             </button>

@@ -21,6 +21,19 @@ const getMyPics = (id) => {
   });
 };
 
+const getOnePic = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${constants.firebaseConfig.databaseURL}/myCollection/${id}.json`)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
 const postRequest = (image) => {
   return new Promise((resolve, reject) => {
     axios
@@ -47,4 +60,4 @@ const deleteRequest = (id) => {
   });
 };
 
-export default { getMyPics, postRequest, deleteRequest };
+export default { getMyPics, getOnePic, postRequest, deleteRequest };
