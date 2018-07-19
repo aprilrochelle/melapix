@@ -1,6 +1,10 @@
 @import 'styles/_colors';
 
 .SinglePic {
-  background-color: $melapix;
-  color: $lightest;
+  background-color: $lightest;
+
+  .single-pic {
+    max-width: 90%;
+    max-height: 525px;
+  }
 }
