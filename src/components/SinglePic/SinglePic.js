@@ -26,12 +26,13 @@ class SinglePic extends React.Component {
 
   render () {
     const { image } = this.state;
-    const path = require(`./../../images/${image.image}`);
+    const path = image.image ? require(`./../../images/${image.image}`) : null;
+
     return (
       <div className="SinglePic col-sm-12">
         <div className="row">
           <div className="col-sm-9">
-            <img src={path} alt={image.name} className="single-pic"/>
+            <img src={path} alt={image.name} className="single-pic" />
             <h2>{image.name}</h2>
             <p>{image.desc}</p>
           </div>
