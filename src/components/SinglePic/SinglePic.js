@@ -25,6 +25,19 @@ class SinglePic extends React.Component {
       });
   }
 
+  saveChangesEvent = () => {
+    const id = this.history.match.params.id;
+    const {image} = this.state;
+    myPics
+      .putRequest(id, details)
+      .then(() => {
+        this.setState({image});
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   render () {
     const { image } = this.state;
     const path = image.image ? require(`./../../images/${image.image}`) : null;
@@ -38,7 +51,9 @@ class SinglePic extends React.Component {
             <p>{image.desc}</p>
           </div>
           <div className="col-sm-3">
-            <UpdateForm />
+            <UpdateForm
+              onSubmit={this.saveChangesEvent}
+            />
           </div>
         </div>
       </div>

@@ -2,8 +2,11 @@ import React from 'react';
 import './UpdateForm.css';
 
 class UpdateForm extends React.Component {
+
   saveChanges = e => {
+    const {onSubmit} = this.props;
     e.preventDefault();
+
   }
 
   render () {
