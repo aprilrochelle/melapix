@@ -12,21 +12,20 @@ class UpdateForm extends React.Component {
   }
 
   saveChanges = e => {
-    const {newDetails} = this.state;
     const {onSubmit} = this.props;
     e.preventDefault();
-    onSubmit(newDetails);
-    console.error(newDetails);
+    onSubmit(this.state.newDetails);
+    console.error(this.state.newDetails);
   }
 
   nameChange = e => {
-    const tempDetails = {...this.props.details};
+    const tempDetails = {...this.state.newDetails};
     tempDetails.name = e.target.value;
     this.setState({newDetails: tempDetails});
   }
 
   descChange = e => {
-    const tempDetails = {...this.props.details};
+    const tempDetails = {...this.state.newDetails};
     tempDetails.desc = e.target.value;
     this.setState({newDetails: tempDetails});
   }
