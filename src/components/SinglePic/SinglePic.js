@@ -25,13 +25,12 @@ class SinglePic extends React.Component {
       });
   }
 
-  saveChangesEvent = () => {
-    const id = this.history.match.params.id;
-    const {image} = this.state;
+  saveChangesEvent = (newDetails) => {
+    const id = this.props.match.params.id;
     myPics
-      .putRequest(id, details)
+      .putRequest(id, newDetails)
       .then(() => {
-        this.setState({image});
+        this.setState({image: newDetails});
       })
       .catch((err) => {
         console.error(err);
@@ -52,6 +51,7 @@ class SinglePic extends React.Component {
           </div>
           <div className="col-sm-3">
             <UpdateForm
+              details={image}
               onSubmit={this.saveChangesEvent}
             />
           </div>
