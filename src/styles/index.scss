@@ -12,3 +12,12 @@ h1 {
 ul {
   list-style: none;
 }
+
+.btn-success {
+  background-color: $melapix;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: $melapixLight;
+}

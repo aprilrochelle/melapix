@@ -79,7 +79,7 @@ class App extends Component {
               rollOut={this.rollOut}
             />
             <div>
-              <div className="row">
+              <div className="container">
                 <Switch>
                   <Route path="/" exact component={Home} />
                   <PublicRoute

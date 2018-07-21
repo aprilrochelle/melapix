@@ -18,7 +18,8 @@ class Pics extends React.Component {
             className="btn btn-success"
             onClick={this.addToCollection}
           >
-            Add to My Collection
+            <span className="glyphicon glyphicon-star-empty"> </span>
+              Add to My Collection
           </button>
         </div>
       </div>
