@@ -9,10 +9,11 @@ class AllPhotos extends React.Component {
   state = {
     pics: [],
     image: {},
+    originalState: [],
   }
 
   addToMyPics = (imageDetails) => {
-    const newImage = {...this.state.image};
+    const newImage = { ...this.state.image };
     newImage.name = imageDetails.name;
     newImage.image = imageDetails.image;
     newImage.desc = imageDetails.desc;
@@ -31,11 +32,41 @@ class AllPhotos extends React.Component {
     picRequests
       .getAllPics()
       .then((pics) => {
-        this.setState({pics});
+        this.setState({ pics });
+        this.setState({originalState: pics});
       })
       .catch((err) => {
         console.error(err);
       });
+  }
+
+  filterPics = (e) => {
+    const originalStateCopy = [...this.state.originalState];
+    const searchTerms = e.target.value.toLowerCase();
+    const picsFiltered = originalStateCopy.filter(pic => {
+      return (pic.name.toLowerCase().includes(searchTerms) || pic.desc.toLowerCase().includes(searchTerms));
+    });
+    if (searchTerms.length > 0) {
+      this.setState({ pics: picsFiltered });
+    } else if (searchTerms === '') {
+      this.setState({ pics: originalStateCopy });
+    }
+  }
+
+  filterPicsBackspace = (e) => {
+    if (e.keyCode === 8 || e.keyCode === 46) {
+      const originalStateCopy = [...this.state.originalState];
+      const searchTerms = e.target.value.toLowerCase();
+      const picsFiltered = originalStateCopy.filter(pic => {
+        return (pic.name.toLowerCase().includes(searchTerms) || pic.desc.toLowerCase().includes(searchTerms));
+      });
+      if (searchTerms.length > 0) {
+        this.setState({ pics: picsFiltered });
+        console.error('new state');
+      } else if (searchTerms === '') {
+        this.setState({ pics: originalStateCopy });
+      }
+    }
   }
 
   render () {
@@ -51,7 +82,12 @@ class AllPhotos extends React.Component {
 
     return (
       <div className="AllPhotos col-md-12">
-        <h1>All Photos</h1>
+        <h1>Search Photos</h1>
+        <div className="row">
+          <label htmlFor="search-terms" className="col-sm-6 col-sm-offset-3">
+            <input type="text" id="search-terms" className="search col-sm-8 col-sm-offset-2" onKeyUp={this.filterPics} onKeyPress={this.filterPicsBackspace} />
+          </label>
+        </div>
         <div className="pic-list">
           <div className="row">
             {picComponents}
