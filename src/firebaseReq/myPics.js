@@ -60,4 +60,17 @@ const deleteRequest = (id) => {
   });
 };
 
-export default { getMyPics, getOnePic, postRequest, deleteRequest };
+const putRequest = (id, imageObj) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`${constants.firebaseConfig.databaseURL}/myCollection/${id}.json`, imageObj)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default { getMyPics, getOnePic, postRequest, deleteRequest, putRequest };
