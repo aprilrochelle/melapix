@@ -78,7 +78,7 @@ class App extends Component {
               authed={this.state.authed}
               rollOut={this.rollOut}
             />
-            <div className="container">
+            <div>
               <div className="row">
                 <Switch>
                   <Route path="/" exact component={Home} />
