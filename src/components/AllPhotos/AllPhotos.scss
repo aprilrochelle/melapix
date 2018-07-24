@@ -1,8 +1,25 @@
 @import 'styles/_colors';
 
+.styles_modal__gNwvD {
+  margin-top: 80px;
+  max-width: 80%;
+}
+
+.preview-box {
+  max-width: 90%;
+  max-height: 580px;
+  overflow: scroll;
+}
+
+.preview-pic {
+  max-width: 90%;
+
+}
+
 .AllPhotos {
   background-color: $lightest;
   color: $medgrey;
+  margin-top: 68px;
 
   .search {
     margin-bottom: 30px;
@@ -10,5 +27,11 @@
 
   .pic-list {
     list-style-type: none;
+  }
+
+  .btn {
+    font-size: 12px;
+    padding: 4px 8px;
+    margin: 0 5px;
   }
 }

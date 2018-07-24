@@ -1,4 +1,5 @@
 @import '_colors';
+@import '_fonts';
 
 html, body {
   margin: 0;
@@ -11,4 +12,25 @@ h1 {
 
 ul {
   list-style: none;
+}
+
+.heading {
+  font-family: 'texgyreadventor-regular';
+}
+
+.heading-accent {
+  font-family: 'Brushed Traveler';
+}
+
+.formBackground {
+  background-color: rgba(255, 255, 255, .6);
+}
+
+.btn-success {
+  background-color: $melapix;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: $melapixLight;
 }

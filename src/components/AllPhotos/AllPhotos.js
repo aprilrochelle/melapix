@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from 'react-responsive-modal';
 import auth from '../../firebaseReq/auth';
 import myPics from '../../firebaseReq/myPics';
 import picRequests from '../../firebaseReq/pics';
@@ -10,6 +11,8 @@ class AllPhotos extends React.Component {
     pics: [],
     image: {},
     originalState: [],
+    open: false,
+    picPreview: '',
   }
 
   addToMyPics = (imageDetails) => {
@@ -28,7 +31,7 @@ class AllPhotos extends React.Component {
       });
   }
 
-  componentDidMount = () => {
+  componentDidMount () {
     picRequests
       .getAllPics()
       .then((pics) => {
@@ -69,13 +72,23 @@ class AllPhotos extends React.Component {
     }
   }
 
+  onOpenModal = (previewPath) => {
+    this.setState({picPreview: previewPath, open: true});
+  };
+
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
+
   render () {
+    const { open } = this.state;
     const picComponents = this.state.pics.map((pic) => {
       return (
         <Pics
           key={pic.id}
           details={pic}
           addToMyPics={this.addToMyPics}
+          onClick={this.onOpenModal}
         />
       );
     });
@@ -88,6 +101,11 @@ class AllPhotos extends React.Component {
             <input type="text" id="search-terms" className="search col-sm-8 col-sm-offset-2" onKeyUp={this.filterPics} onKeyPress={this.filterPicsBackspace} />
           </label>
         </div>
+        <Modal open={open} onClose={this.onCloseModal} center>
+          <div className="preview-box">
+            <img className="preview-pic" src={this.state.picPreview} alt="preview"/>
+          </div>
+        </Modal>
         <div className="pic-list">
           <div className="row">
             {picComponents}

@@ -5,7 +5,7 @@ class Home extends React.Component {
   render () {
     return (
       <div className="Home">
-        <h1>Life in Color!</h1>
+        <h1 className="heading">Life in<br/><span className="heading-accent">Color!</span></h1>
       </div>
     );
   }

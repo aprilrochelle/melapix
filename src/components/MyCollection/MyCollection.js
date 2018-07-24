@@ -8,7 +8,7 @@ class MyCollection extends React.Component {
     pictures: [],
   }
 
-  componentDidMount = () => {
+  componentWillMount () {
     myPics
       .getMyPics(auth.getUid())
       .then((pics) => {
@@ -63,7 +63,9 @@ class MyCollection extends React.Component {
     return (
       <div className="MyCollection">
         <h1>My Collection</h1>
-        {myPicComponents}
+        {
+          this.state.pictures.length === 0 ? <h4>You haven't added any photos to your collection.</h4> : myPicComponents
+        }
       </div>
     );
   }
