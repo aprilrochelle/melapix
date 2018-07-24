@@ -1,6 +1,23 @@
 @import 'styles/_colors';
 
 .Login {
+  background: url(./images/loginBackground.jpg) no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    width: 100%;
   background-color: $lightest;
   color: $medgrey;
+
+  #login-form {
+    margin-top: 10%;
+  }
+
+  .heading {
+    font-weight: bold;
+    color: $dark;
+  }
 }

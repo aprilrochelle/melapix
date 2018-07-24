@@ -41,8 +41,8 @@ class Login extends React.Component {
     return (
       <div className="Login col-xs-12">
         <div id="login-form">
-          <h1 className="text-center">Login</h1>
-          <form className="form-horizontal col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+          <form className="form-horizontal col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 formBackground">
+            <h1 className="text-center heading">Login</h1>
             <div className="form-group">
               <label htmlFor="inputEmail" className="col-sm-2 control-label">
                 Email
@@ -82,7 +82,7 @@ class Login extends React.Component {
               <div className="col-sm-offset-2 col-sm-10">
                 <button
                   type="submit"
-                  className="btn btn-default col-xs-12"
+                  className="btn btn-success col-xs-12"
                   onClick={this.loginClickEvent}
                 >
                   Login

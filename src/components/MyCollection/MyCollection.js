@@ -8,7 +8,7 @@ class MyCollection extends React.Component {
     pictures: [],
   }
 
-  componentDidMount = () => {
+  componentDidMount () {
     myPics
       .getMyPics(auth.getUid())
       .then((pics) => {
