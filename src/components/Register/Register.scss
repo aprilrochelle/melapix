@@ -1,6 +1,7 @@
 @import 'styles/_colors';
 
 .Register {
+  margin-top: 66px;
   background: url(./images/registerBackground.jpg) no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -16,8 +17,7 @@
     margin-top: 10%;
   }
 
-  .heading {
+  h1 {
     color: $dark;
-    font-weight: bold;
   }
 }

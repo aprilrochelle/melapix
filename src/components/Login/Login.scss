@@ -1,6 +1,7 @@
 @import 'styles/_colors';
 
 .Login {
+  margin-top: 66px;
   background: url(./images/loginBackground.jpg) no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -16,8 +17,8 @@
     margin-top: 10%;
   }
 
-  .heading {
-    font-weight: bold;
+  h1 {
     color: $dark;
+
   }
 }

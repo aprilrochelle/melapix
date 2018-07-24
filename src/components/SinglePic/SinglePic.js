@@ -66,7 +66,7 @@ class SinglePic extends React.Component {
 
     return (
       <div className="SinglePic col-sm-12">
-        <div className="row">
+        <div className="container">
           <div className="col-sm-9">
             <img src={path} alt={image.name} className="single-pic" />
             <h2>{image.name}</h2>
