@@ -10,6 +10,7 @@ import Navbar from '../components/Navbar/Navbar';
 import SinglePic from '../components/SinglePic/SinglePic';
 import './App.css';
 import fbConnection from '../firebaseReq/fbConnect';
+import Dashboard from '../components/Dashboard/Dashboard';
 fbConnection();
 
 const PrivateRoute = ({component: Component, authed, ...rest}) => {
@@ -91,6 +92,11 @@ class App extends Component {
                     path="/register"
                     authed={this.state.authed}
                     component={Register}
+                  />
+                  <PrivateRoute
+                    path="/dashboard"
+                    authed={this.state.authed}
+                    component={Dashboard}
                   />
                   <PrivateRoute
                     path="/allphotos"
