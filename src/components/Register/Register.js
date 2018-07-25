@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import firebase from 'firebase';
 import auth from '../../firebaseReq/auth';
 import users from '../../firebaseReq/users';
 import './Register.css';
@@ -12,6 +13,7 @@ class Register extends React.Component {
       email: '',
       password: '',
       isPhotog: false,
+      uid: '',
     },
   }
 
@@ -21,6 +23,7 @@ class Register extends React.Component {
     auth
       .registerUser(user)
       .then(() => {
+        user.uid = firebase.auth().currentUser.uid;
         users
           .postNewUser(user)
           .then(() => {
