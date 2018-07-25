@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import firebase from 'firebase';
 import auth from '../../firebaseReq/auth';
+import users from '../../firebaseReq/users';
 import './Register.css';
 
 class Register extends React.Component {
   state = {
     user: {
-      email: 'test@test1.com',
-      password: 'a12345',
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      isPhotog: false,
+      uid: '',
     },
   }
 
@@ -17,11 +23,28 @@ class Register extends React.Component {
     auth
       .registerUser(user)
       .then(() => {
-        this.props.history.push('/allphotos');
+        user.uid = firebase.auth().currentUser.uid;
+        users
+          .postNewUser(user)
+          .then(() => {
+            this.state.user.isPhotog ? this.props.history.push('/') : this.props.history.push('/allphotos');
+          });
       })
       .catch((err) => {
         console.error('error with registering user', err);
       });
+  }
+
+  firstNameChange = e => {
+    const tempUser = {...this.state.user};
+    tempUser.firstName = e.target.value;
+    this.setState({user: tempUser});
+  }
+
+  lastNameChange = e => {
+    const tempUser = {...this.state.user};
+    tempUser.lastName = e.target.value;
+    this.setState({user: tempUser});
   }
 
   emailChange = e => {
@@ -36,6 +59,12 @@ class Register extends React.Component {
     this.setState({user: tempUser});
   }
 
+  toggle (e) {
+    const tempUser = {...this.state.user};
+    tempUser.isPhotog = !this.state.user.isPhotog;
+    this.setState({user: tempUser});
+  }
+
   render () {
     const { user } = this.state;
     return (
@@ -43,6 +72,36 @@ class Register extends React.Component {
         <div id="register-form">
           <form className="form-horizontal col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 formBackground">
             <h1 className="text-center">Get Registered!</h1>
+            <div className="form-group">
+              <label htmlFor="inputFirst" className="col-sm-2 control-label">
+                First Name
+              </label>
+              <div className="col-sm-10">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="inputFirst"
+                  placeholder="First Name"
+                  value={user.firstName}
+                  onChange={this.firstNameChange}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="inputLast" className="col-sm-2 control-label">
+                Last Name
+              </label>
+              <div className="col-sm-10">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="inputLast"
+                  placeholder="Last Name"
+                  value={user.lastName}
+                  onChange={this.lastNameChange}
+                />
+              </div>
+            </div>
             <div className="form-group">
               <label htmlFor="inputEmail" className="col-sm-2 control-label">
                 Email
@@ -73,6 +132,12 @@ class Register extends React.Component {
                 />
               </div>
             </div>
+            <div className="checkbox">
+              <label>
+                <input type="checkbox" onClick={this.toggle.bind(this)}/> This is a photographer account.
+              </label>
+            </div>
+            <br/>
             <div className="form-group">
               <div className="col-sm-offset-2 col-sm-10 text-center">
                 <Link to="/login">Need to Login?</Link>
