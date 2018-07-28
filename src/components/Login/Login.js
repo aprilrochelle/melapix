@@ -17,7 +17,7 @@ class Login extends React.Component {
     auth
       .loginUser(user)
       .then(() => {
-        this.props.history.push('/allphotos');
+
       })
       .catch(error => {
         console.error('error with login', error);

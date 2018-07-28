@@ -14,16 +14,16 @@ import uzers from '../firebaseReq/users';
 import Dashboard from '../components/Dashboard/Dashboard';
 fbConnection();
 
-const PrivateRoute = ({component: Component, authed, ...rest}) => {
+const PrivateRoute = ({component: Component, authed, photog, ...rest}) => {
   return (
     <Route
       {...rest}
       render={props =>
-        authed === true ? (
+        (authed === true && photog === false) ? (
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: '/login', state: {from: props.location} }}
+            to={{ pathname: '/', state: {from: props.location} }}
           />
         )
       }
@@ -40,7 +40,7 @@ const PhotogRoute = ({component: Component, authed, photog, ...rest}) => {
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: '/login', state: {from: props.location} }}
+            to={{ pathname: '/allphotos', state: {from: props.location} }}
           />
         )
       }
@@ -57,7 +57,7 @@ const PublicRoute = ({component: Component, authed, ...rest}) => {
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: '/allphotos', state: {from: props.location} }}
+            to={{ pathname: '/', state: {from: props.location} }}
           />
         )
       }
@@ -79,6 +79,7 @@ class App extends Component {
           .then((userAccount) => {
             if (userAccount.isPhotog) {
               this.setState({authed: true, photog: true});
+
             } else if (!userAccount.isPhotog) {
               this.setState({authed: true, photog: false});
             }
@@ -107,6 +108,7 @@ class App extends Component {
           <div>
             <Navbar
               authed={this.state.authed}
+              photog={this.state.photog}
               rollOut={this.rollOut}
             />
             <div>
@@ -116,6 +118,7 @@ class App extends Component {
                   <PublicRoute
                     path="/login"
                     authed={this.state.authed}
+                    photog={this.state.photog}
                     component={Login}
                   />
                   <PublicRoute
@@ -132,6 +135,7 @@ class App extends Component {
                   <PrivateRoute
                     path="/allphotos"
                     authed={this.state.authed}
+                    photog={this.state.photog}
                     component={AllPhotos}
                   />
                   <PrivateRoute
