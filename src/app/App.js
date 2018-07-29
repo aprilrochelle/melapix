@@ -10,18 +10,37 @@ import Navbar from '../components/Navbar/Navbar';
 import SinglePic from '../components/SinglePic/SinglePic';
 import './App.css';
 import fbConnection from '../firebaseReq/fbConnect';
+import uzers from '../firebaseReq/users';
+import Dashboard from '../components/Dashboard/Dashboard';
 fbConnection();
 
-const PrivateRoute = ({component: Component, authed, ...rest}) => {
+const PrivateRoute = ({component: Component, authed, photog, ...rest}) => {
   return (
     <Route
       {...rest}
       render={props =>
-        authed === true ? (
+        (authed === true && photog === false) ? (
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: '/login', state: {from: props.location} }}
+            to={{ pathname: '/', state: {from: props.location} }}
+          />
+        )
+      }
+    />
+  );
+};
+
+const PhotogRoute = ({component: Component, authed, photog, ...rest}) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        (authed === true && photog === true) ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: '/allphotos', state: {from: props.location} }}
           />
         )
       }
@@ -38,7 +57,7 @@ const PublicRoute = ({component: Component, authed, ...rest}) => {
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: '/allphotos', state: {from: props.location} }}
+            to={{ pathname: '/', state: {from: props.location} }}
           />
         )
       }
@@ -49,12 +68,25 @@ const PublicRoute = ({component: Component, authed, ...rest}) => {
 class App extends Component {
   state = {
     authed: false,
+    photog: false,
   }
 
   componentDidMount () {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({authed: true});
+        uzers
+          .getUserById(user.uid)
+          .then((userAccount) => {
+            if (userAccount.isPhotog) {
+              this.setState({authed: true, photog: true});
+
+            } else if (!userAccount.isPhotog) {
+              this.setState({authed: true, photog: false});
+            }
+          })
+          .catch(err => {
+            console.error(err);
+          });
       } else {
         this.setState({authed: false});
       }
@@ -76,6 +108,7 @@ class App extends Component {
           <div>
             <Navbar
               authed={this.state.authed}
+              photog={this.state.photog}
               rollOut={this.rollOut}
             />
             <div>
@@ -85,6 +118,7 @@ class App extends Component {
                   <PublicRoute
                     path="/login"
                     authed={this.state.authed}
+                    photog={this.state.photog}
                     component={Login}
                   />
                   <PublicRoute
@@ -92,9 +126,16 @@ class App extends Component {
                     authed={this.state.authed}
                     component={Register}
                   />
+                  <PhotogRoute
+                    path="/dashboard"
+                    authed={this.state.authed}
+                    photog={this.state.photog}
+                    component={Dashboard}
+                  />
                   <PrivateRoute
                     path="/allphotos"
                     authed={this.state.authed}
+                    photog={this.state.photog}
                     component={AllPhotos}
                   />
                   <PrivateRoute

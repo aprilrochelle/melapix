@@ -27,7 +27,7 @@ class Register extends React.Component {
         users
           .postNewUser(user)
           .then(() => {
-            this.state.user.isPhotog ? this.props.history.push('/') : this.props.history.push('/allphotos');
+            // this.state.user.isPhotog ? this.props.history.push('/dashboard') : this.props.history.push('/allphotos');
           });
       })
       .catch((err) => {
