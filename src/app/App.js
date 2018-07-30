@@ -12,6 +12,7 @@ import './App.css';
 import fbConnection from '../firebaseReq/fbConnect';
 import uzers from '../firebaseReq/users';
 import Dashboard from '../components/Dashboard/Dashboard';
+import MyWork from '../components/MyWork/MyWork';
 fbConnection();
 
 const PrivateRoute = ({component: Component, authed, photog, ...rest}) => {
@@ -132,6 +133,12 @@ class App extends Component {
                     photog={this.state.photog}
                     component={Dashboard}
                   />
+                  <PhotogRoute
+                    path="/mywork"
+                    authed={this.state.authed}
+                    photog={this.state.photog}
+                    component={MyWork}
+                  />
                   <PrivateRoute
                     path="/allphotos"
                     authed={this.state.authed}
@@ -141,11 +148,13 @@ class App extends Component {
                   <PrivateRoute
                     path="/mycollection"
                     authed={this.state.authed}
+                    photog={this.state.photog}
                     component={MyCollection}
                   />
                   <PrivateRoute
                     path="/singlepic/:id"
                     authed={this.state.authed}
+                    photog={this.state.photog}
                     component={SinglePic}
                   />
                 </Switch>
