@@ -34,9 +34,8 @@ class AllPhotos extends React.Component {
   componentDidMount () {
     picRequests
       .getAllPics()
-      .then((pics) => {
-        this.setState({ pics });
-        this.setState({originalState: pics});
+      .then((pictures) => {
+        this.setState({ pics: pictures, originalState: pictures });
       })
       .catch((err) => {
         console.error(err);

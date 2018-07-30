@@ -154,6 +154,7 @@ class App extends Component {
                   <PrivateRoute
                     path="/singlepic/:id"
                     authed={this.state.authed}
+                    photog={this.state.photog}
                     component={SinglePic}
                   />
                 </Switch>

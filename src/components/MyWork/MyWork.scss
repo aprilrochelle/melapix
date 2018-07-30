@@ -9,19 +9,33 @@
     color: $dark;
   }
 
+  .work-collection {
+    height: 80vh;
+    overflow: scroll;
+  }
+  .update-form {
+    background-color: $melapix;
+    color: $lightest;
+    min-height: 35vh;
+  }
+
   .btn {
     font-size: 12px;
     padding: 2px 6px;
     margin: 0 5px;
   }
 
+  .save-btn {
+    margin-top: 15px;
+  }
+
   .pic-card {
-    min-height: 350px;
+    min-height: 270px;
     margin-bottom: 20px;
 
     .picture {
       max-width: 100%;
-      max-height: 280px;
+      max-height: 180px;
     }
   }
 }

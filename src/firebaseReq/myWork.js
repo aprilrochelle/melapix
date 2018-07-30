@@ -34,4 +34,30 @@ const deleteRequest = (id) => {
   });
 };
 
-export default { getMyWork, deleteRequest };
+const getOneImage = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${constants.firebaseConfig.databaseURL}/pics/${id}.json`)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+const putRequest = (id, imageObj) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`${constants.firebaseConfig.databaseURL}/pics/${id}.json`, imageObj)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default { getMyWork, deleteRequest, putRequest, getOneImage };
