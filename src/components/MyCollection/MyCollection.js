@@ -48,7 +48,7 @@ class MyCollection extends React.Component {
               className="btn btn-warning"
               onClick={singlePicClick}
             >
-              Update
+              Expand View
             </button>
             <button
               className="btn btn-danger"
