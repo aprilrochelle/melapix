@@ -19,6 +19,7 @@ class AllPhotos extends React.Component {
     const newImage = {};
     newImage.name = imageDetails.name;
     newImage.image = imageDetails.image;
+    newImage.picId = imageDetails.id;
     newImage.desc = imageDetails.desc;
     newImage.uid = auth.getUid();
     newImage.photogId = imageDetails.photogId;
