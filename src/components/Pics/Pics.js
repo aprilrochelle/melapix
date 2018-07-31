@@ -1,7 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Pics.css';
 
 class Pics extends React.Component {
+  static propTypes = {
+    details: PropTypes.object.isRequired,
+    addToMyPics: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired,
+  }
+
   addToCollection = () => {
     this.props.addToMyPics(this.props.details);
   }
