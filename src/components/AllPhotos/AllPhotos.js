@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
+import moment from 'moment';
 import auth from '../../firebaseReq/auth';
 import myPics from '../../firebaseReq/myPics';
 import picRequests from '../../firebaseReq/pics';
@@ -9,18 +10,20 @@ import './AllPhotos.css';
 class AllPhotos extends React.Component {
   state = {
     pics: [],
-    image: {},
     originalState: [],
     open: false,
     picPreview: '',
   }
 
   addToMyPics = (imageDetails) => {
-    const newImage = { ...this.state.image };
+    const newImage = {};
     newImage.name = imageDetails.name;
     newImage.image = imageDetails.image;
+    newImage.picId = imageDetails.id;
     newImage.desc = imageDetails.desc;
     newImage.uid = auth.getUid();
+    newImage.photogId = imageDetails.photogId;
+    newImage.dateAdded = moment().format('MMM Do YY');
     myPics
       .postRequest(newImage)
       .then(() => {
