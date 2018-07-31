@@ -1,9 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import auth from '../../firebaseReq/auth';
 import './Navbar.css';
 
 class Navbar extends React.Component {
+  static propTypes = {
+    authed: PropTypes.bool.isRequired,
+    photog: PropTypes.bool.isRequired,
+    rollOut: PropTypes.func.isRequired,
+  }
+
   render () {
     const { authed, photog, rollOut } = this.props;
     const logoutClick = () => {
