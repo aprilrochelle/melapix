@@ -4,6 +4,7 @@ import moment from 'moment';
 import auth from '../../firebaseReq/auth';
 import myPics from '../../firebaseReq/myPics';
 import picRequests from '../../firebaseReq/pics';
+import favorited from '../../firebaseReq/myPicsFavorited';
 import Pics from '../Pics/Pics';
 import './AllPhotos.css';
 
@@ -16,6 +17,20 @@ class AllPhotos extends React.Component {
   }
 
   addToMyPics = (imageDetails) => {
+    const totalInfo = {};
+    totalInfo.picId = imageDetails.id;
+    totalInfo.name = imageDetails.name;
+    totalInfo.photogId = imageDetails.photogId;
+    totalInfo.total = 0;
+    favorited
+      .postTotal(totalInfo.picId, totalInfo)
+      .then(() => {
+
+      })
+      .catch(err => {
+        console.error('error in posting to totals', err);
+      });
+
     const newImage = {};
     newImage.name = imageDetails.name;
     newImage.image = imageDetails.image;
