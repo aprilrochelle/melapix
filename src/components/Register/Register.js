@@ -27,7 +27,7 @@ class Register extends React.Component {
         users
           .postNewUser(user)
           .then(() => {
-
+            this.props.history.push('/');
           });
       })
       .catch((err) => {
