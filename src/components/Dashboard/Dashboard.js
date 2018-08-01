@@ -48,6 +48,7 @@ class Dashboard extends React.Component {
           <CartesianGrid stroke="#ccc" fill="#163b34" strokeDasharray="5 5" />
           <Bar type="monotone" dataKey="total" fill="#69ab0b" barSize={30} />
         </BarChart>
+      </div>
     );
   }
 }
