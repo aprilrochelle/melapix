@@ -25,6 +25,18 @@ class Dashboard extends React.Component {
   }
 
   render () {
+    const { data } = this.state;
+    let photogDisplay;
+    if (data) {
+      photogDisplay = (
+        <h3>Here's a list of your pics that have been saved by users:</h3>
+      );
+    } else {
+      photogDisplay = (
+        <h3>No pics have been saved by users yet!</h3>
+      );
+    }
+
     return (
       <div className="Dashboard col-md-12">
         <h1>My Dashboard</h1>
@@ -36,7 +48,6 @@ class Dashboard extends React.Component {
           <CartesianGrid stroke="#ccc" fill="#163b34" strokeDasharray="5 5" />
           <Bar type="monotone" dataKey="total" fill="#69ab0b" barSize={30} />
         </BarChart>
-      </div>
     );
   }
 }
