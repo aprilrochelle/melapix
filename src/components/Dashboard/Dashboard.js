@@ -26,14 +26,28 @@ class Dashboard extends React.Component {
 
   render () {
     const { data } = this.state;
+    const picList = this.state.data.map(pic => {
+      return (
+        <div className="row pic-id-list row-eq-height">
+          <h5 className="col-md-1 col-md-offset-4 pic-id">{pic.picId}</h5>
+          <p className="col-md-4 pic-name">{pic.name}</p>
+        </div>
+      );
+    });
+
     let photogDisplay;
     if (data) {
       photogDisplay = (
-        <h3>Here's a list of your pics that have been saved by users:</h3>
+        <div className="photog-display">
+          <h4>Here's a list of your pics that have been saved by users:</h4>
+          {picList}
+        </div>
       );
     } else {
       photogDisplay = (
-        <h3>No pics have been saved by users yet!</h3>
+        <div className="photog-display">
+          <h4>No pics have been saved by users yet!</h4>
+        </div>
       );
     }
 
