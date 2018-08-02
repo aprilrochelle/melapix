@@ -25,6 +25,32 @@ class Dashboard extends React.Component {
   }
 
   render () {
+    const { data } = this.state;
+    const picList = this.state.data.map(pic => {
+      return (
+        <div className="row pic-id-list row-eq-height">
+          <h5 className="col-md-1 col-md-offset-4 pic-id">{pic.picId}</h5>
+          <p className="col-md-4 pic-name">{pic.name}</p>
+        </div>
+      );
+    });
+
+    let photogDisplay;
+    if (data) {
+      photogDisplay = (
+        <div className="photog-display">
+          <h4>Here's a list of your pics that have been saved by users:</h4>
+          {picList}
+        </div>
+      );
+    } else {
+      photogDisplay = (
+        <div className="photog-display">
+          <h4>No pics have been saved by users yet!</h4>
+        </div>
+      );
+    }
+
     return (
       <div className="Dashboard col-md-12">
         <h1>My Dashboard</h1>
@@ -36,6 +62,7 @@ class Dashboard extends React.Component {
           <CartesianGrid stroke="#ccc" fill="#163b34" strokeDasharray="5 5" />
           <Bar type="monotone" dataKey="total" fill="#69ab0b" barSize={30} />
         </BarChart>
+        {photogDisplay}
       </div>
     );
   }
