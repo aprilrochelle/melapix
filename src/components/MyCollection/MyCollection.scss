@@ -9,19 +9,47 @@
     color: $dark;
   }
 
-  .btn {
-    font-size: 12px;
-    padding: 2px 6px;
-    margin: 0 5px;
+  .btn-dark {
+    background-color: $dark;
+    color: $lightest;
+    margin: 5px 3px;
+  }
+
+  .btn-dark:hover {
+    background-color: $medgrey;
+  }
+
+  .pic-list {
+    width: 90%;
+    margin: 0 auto;
   }
 
   .pic-card {
-    min-height: 350px;
+    height: 350px;
     margin-bottom: 20px;
+    position: relative;
+    overflow-x: hidden;
+
+    .buttons-and-name {
+      position: absolute;
+      background-color: rgba(255,255,255,.7);
+      bottom: 0;
+      width: 100%;
+      display: block;
+      opacity: 0;
+    }
 
     .picture {
-      max-width: 100%;
-      max-height: 280px;
+      height: 350px;
+    }
+  }
+
+  .pic-card:hover {
+    .buttons-and-name {
+      opacity: 1;
+    }
+    .picture {
+      opacity: .7;
     }
   }
 }

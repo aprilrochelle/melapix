@@ -42,19 +42,19 @@ class MyCollection extends React.Component {
       return (
         <div className="col-sm-4 pic-card" key={pic.id}>
           <img className="picture" src={image} alt={pic.name} />
-          <h5>{pic.name}</h5>
-          <div className="collection-buttons">
+          <div className="buttons-and-name">
+            <h5>{pic.name}</h5>
             <button
-              className="btn btn-warning"
+              className="btn btn-dark"
               onClick={singlePicClick}
             >
-              Expand View
+              <span className="glyphicon glyphicon-fullscreen"></span>
             </button>
             <button
-              className="btn btn-danger"
+              className="btn btn-dark"
               onClick={() => this.deleteClick(pic.id)}
             >
-              Delete
+              <span className="glyphicon glyphicon-trash"></span>
             </button>
           </div>
         </div>
@@ -63,9 +63,11 @@ class MyCollection extends React.Component {
     return (
       <div className="MyCollection">
         <h1>My Collection</h1>
-        {
-          this.state.pictures.length === 0 ? <h4>You haven't added any photos to your collection.</h4> : myPicComponents
-        }
+        <div className="pic-list">
+          {
+            this.state.pictures.length === 0 ? <h4>You haven't added any photos to your collection.</h4> : myPicComponents
+          }
+        </div>
       </div>
     );
   }

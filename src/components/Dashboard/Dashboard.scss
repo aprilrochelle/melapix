@@ -14,13 +14,13 @@
   }
 
   .pic-id {
-    background-color: $melapix;
-    color: $lightest;
+    color: $melapix;
     display: inline-block;
     vertical-align: middle;
     float: none;
     margin-left: 0;
     padding: 5px 2px;
+    border-right: 3px solid $melapix;
   }
 
   .pic-name {
