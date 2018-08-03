@@ -40,7 +40,7 @@ class AllPhotos extends React.Component {
     newImage.photogId = imageDetails.photogId;
     newImage.dateAdded = moment().format('MMM Do YY');
     myPics
-      .postRequest(newImage)
+      .postRequest(newImage.uid, newImage)
       .then(() => {
 
       })
@@ -113,9 +113,14 @@ class AllPhotos extends React.Component {
     return (
       <div className="AllPhotos col-md-12">
         <h1>Search Photos</h1>
-        <label htmlFor="search-terms" className="col-sm-6 col-sm-offset-3">
-          <input type="text" id="search-terms" className="search col-sm-8 col-sm-offset-2" onKeyUp={this.filterPics} onKeyPress={this.filterPicsBackspace} />
-        </label>
+        <div className="row">
+          <label htmlFor="search-terms" className="col-sm-6 col-sm-offset-3">
+            <input type="text" id="search-terms" className="search col-sm-8 col-sm-offset-2" onKeyUp={this.filterPics} onKeyPress={this.filterPicsBackspace} />
+          </label>
+        </div>
+        <div className="row">
+          <p className="text-center"><i>Psst! Click on any image to enlarge it.</i></p>
+        </div>
         <Modal open={open} onClose={this.onCloseModal} center>
           <div className="preview-box">
             <img className="preview-pic" src={this.state.picPreview} alt="preview"/>
