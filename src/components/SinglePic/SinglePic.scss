@@ -4,6 +4,16 @@
   background-color: $lightest;
   margin-top: 85px;
 
+  .btn-dark {
+    background-color: $dark;
+    color: $lightest;
+    margin: 5px 3px;
+  }
+
+  .btn-dark:hover {
+    background-color: $medgrey;
+  }
+
   .single-pic {
     max-width: 90%;
     max-height: 525px;
