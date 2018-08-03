@@ -28,7 +28,7 @@ class Dashboard extends React.Component {
     const { data } = this.state;
     const picList = this.state.data.map(pic => {
       return (
-        <div className="row pic-id-list row-eq-height">
+        <div className="row pic-id-list row-eq-height" key={pic.picId}>
           <h5 className="col-md-1 col-md-offset-4 pic-id">{pic.picId}</h5>
           <p className="col-md-4 pic-name">{pic.name}</p>
         </div>
@@ -54,7 +54,7 @@ class Dashboard extends React.Component {
     return (
       <div className="Dashboard col-md-12">
         <h1>My Dashboard</h1>
-        <BarChart width={700} height={400} data={this.state.data}>
+        <BarChart width={800} height={500} data={this.state.data}>
           <XAxis dataKey="picId" stroke="#717171" />
           <YAxis />
           <Tooltip wrapperStyle={{ width: 100, backgroundColor: '#fff' }} />
