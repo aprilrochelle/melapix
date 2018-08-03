@@ -40,7 +40,7 @@ class AllPhotos extends React.Component {
     newImage.photogId = imageDetails.photogId;
     newImage.dateAdded = moment().format('MMM Do YY');
     myPics
-      .postRequest(newImage)
+      .postRequest(newImage.uid, newImage)
       .then(() => {
 
       })

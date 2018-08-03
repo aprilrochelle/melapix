@@ -34,12 +34,31 @@ const getOnePic = (id) => {
   });
 };
 
-const postRequest = (image) => {
+const postRequest = (id, newImage) => {
   return new Promise((resolve, reject) => {
     axios
-      .post(`${constants.firebaseConfig.databaseURL}/myCollection.json`, image)
+      .get(`${constants.firebaseConfig.databaseURL}/myCollection.json?orderBy="uid"&equalTo="${id}"`)
       .then((res) => {
-        resolve(res);
+        const myPics = [];
+        if (res.data !== null) {
+          Object.keys(res.data).forEach(key => {
+            res.data[key].id = key;
+            myPics.push(res.data[key]);
+          });
+          resolve(myPics);
+          myPics.filter(myPic => {
+            return (myPic.picId === newImage.picId);
+          });
+        };
+        if (myPics.length > 0) {
+          alert('You have already purchased this image. To view, go to My Collection.');
+        } else {
+          axios
+            .post(`${constants.firebaseConfig.databaseURL}/myCollection.json`, newImage)
+            .then((res) => {
+              resolve(res);
+            });
+        }
       })
       .catch((err) => {
         reject(err);
