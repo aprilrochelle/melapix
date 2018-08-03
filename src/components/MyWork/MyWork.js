@@ -12,6 +12,12 @@ class MyWork extends React.Component {
       desc: '',
       photogId: '',
     },
+    origInfo: {
+      name: '',
+      image: '',
+      desc: '',
+      photogId: '',
+    },
   }
 
   componentWillMount () {
@@ -44,7 +50,7 @@ class MyWork extends React.Component {
   }
 
   saveChanges = e => {
-    const { info } = this.state;
+    const { info, origInfo } = this.state;
     const newImgInfo = {};
     newImgInfo.name = info.name;
     newImgInfo.image = info.image;
@@ -57,7 +63,7 @@ class MyWork extends React.Component {
         myWork
           .getMyWork(auth.getUid())
           .then((pics) => {
-            this.setState({ pictures: pics });
+            this.setState({ pictures: pics, info: origInfo });
           });
       })
       .catch((err) => {
