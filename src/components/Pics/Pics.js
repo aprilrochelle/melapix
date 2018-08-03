@@ -24,14 +24,15 @@ class Pics extends React.Component {
       <div className="Pics col-sm-3">
         <div className="pic-card">
           <img className="picture" src={image} alt={details.name} onClick={() => this.modalClick(image)}/>
-          <h4>{details.name}</h4>
-          <button
-            className="btn btn-success"
-            onClick={this.addToCollection}
-          >
-            <span className="glyphicon glyphicon-star-empty"> </span>
-             Add to My Collection
-          </button>
+          <div className="buttons-and-name">
+            <h4>{details.name}</h4>
+            <button
+              className="btn btn-dark"
+              onClick={this.addToCollection}
+            >
+              <span className="glyphicon glyphicon-usd"></span>
+            </button>
+          </div>
         </div>
       </div>
     );

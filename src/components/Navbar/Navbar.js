@@ -23,17 +23,17 @@ class Navbar extends React.Component {
       navDisplay = (
         <ul className="nav navbar-nav navbar-right navbar-form">
           <li>
-            <Link to="/allphotos">Search All Photos</Link>
+            <Link to="/allphotos"><span className="glyphicon glyphicon-shopping-cart"> </span> Shop Photos</Link>
           </li>
           <li>
-            <Link to="/mycollection">My Collection</Link>
+            <Link to="/mycollection"><span className="glyphicon glyphicon-picture"> </span> My Collection</Link>
           </li>
           <li className="navbar-form">
             <button
               onClick={logoutClick}
               className="btn btn-success"
             >
-              Log Out
+              <span className="glyphicon glyphicon-log-out"> </span> Log Out
             </button>
           </li>
         </ul>
@@ -42,17 +42,17 @@ class Navbar extends React.Component {
       navDisplay = (
         <ul className="nav navbar-nav navbar-right navbar-form">
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/dashboard"><span className="glyphicon glyphicon-signal"> </span> Dashboard</Link>
           </li>
           <li>
-            <Link to="/mywork">My Work</Link>
+            <Link to="/mywork"><span className="glyphicon glyphicon-camera"> </span> My Work</Link>
           </li>
           <li className="navbar-form">
             <button
               onClick={logoutClick}
               className="btn btn-success"
             >
-              Log Out
+              <span className="glyphicon glyphicon-log-out"> </span> Log Out
             </button>
           </li>
         </ul>
@@ -61,7 +61,7 @@ class Navbar extends React.Component {
       navDisplay = (
         <ul className="nav navbar-nav navbar-right navbar-form">
           <li>
-            <Link to="/login">Login</Link>
+            <Link to="/login"><span className="glyphicon glyphicon-log-in"> </span> Login</Link>
           </li>
         </ul>
       );

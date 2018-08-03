@@ -9,33 +9,61 @@
     color: $dark;
   }
 
-  .work-collection {
-    height: 80vh;
+  .work-container {
+    height: 75vh;
     overflow: scroll;
-  }
-  .update-form {
-    background-color: $melapix;
-    color: $lightest;
-    min-height: 35vh;
+    margin-right: 10px;
   }
 
-  .btn {
-    font-size: 12px;
-    padding: 2px 6px;
-    margin: 0 5px;
+  .work-collection {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .update-form {
+    background-color: $dark;
+    color: $lightest;
+    min-height: 35vh;
   }
 
   .save-btn {
     margin-top: 15px;
   }
 
+  .btn-dark {
+    background-color: $dark;
+    color: $lightest;
+    margin: 5px 3px;
+  }
+
+  .btn-dark:hover {
+    background-color: $medgrey;
+  }
+
   .pic-card {
-    min-height: 270px;
+    height: 200px;
     margin-bottom: 20px;
+    position: relative;
+    overflow-x: hidden;
+
+    .buttons-and-name {
+      position: absolute;
+      background-color: rgba(255,255,255,.7);
+      bottom: 0;
+      width: 100%;
+      opacity: 0;
+    }
 
     .picture {
-      max-width: 100%;
-      max-height: 180px;
+      height: 200px;
+    }
+  }
+
+  .pic-card:hover {
+    .buttons-and-name {
+      opacity: 1;
+    }
+    .picture {
+      opacity: .7;
     }
   }
 }

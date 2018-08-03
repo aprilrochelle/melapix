@@ -8,17 +8,42 @@
     color: $dark;
   }
 
+  .btn-dark {
+    background-color: $dark;
+    color: $lightest;
+    margin-bottom: 5px;
+  }
+
+  .btn-dark:hover {
+    background-color: $medgrey;
+  }
+
   .pic-card {
     height: 250px;
     margin-bottom: 50px;
+    position: relative;
+    overflow-x: hidden;
 
-    .picture {
-      max-width: 90%;
-      max-height: 190px;
+    .buttons-and-name {
+      position: absolute;
+      background-color: rgba(255,255,255,.7);
+      bottom: 0;
+      width: 100%;
+      display: block;
+      opacity: 0;
     }
 
-    .picture:hover {
-      opacity: .6;
+    .picture {
+      height: 250px;
+    }
+  }
+
+  .pic-card:hover {
+    .buttons-and-name {
+      opacity: 1;
+    }
+    .picture {
+      opacity: .7;
     }
   }
 }

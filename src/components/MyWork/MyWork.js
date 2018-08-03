@@ -82,21 +82,21 @@ class MyWork extends React.Component {
     const myWorkComponents = this.state.pictures.map(pic => {
       const image = require(`./../../images/${pic.image}`);
       return (
-        <div className="col-sm-3 pic-card" key={pic.id}>
+        <div className="col-sm-4 pic-card" key={pic.id}>
           <img className="picture" src={image} alt={pic.name} />
-          <h5>{pic.name}</h5>
-          <div className="collection-buttons">
+          <div className="buttons-and-name">
+            <h5>{pic.name}</h5>
             <button
-              className="btn btn-warning"
+              className="btn btn-dark"
               onClick={() => this.picToUpdateClick(pic)}
             >
-              Update
+              <span className="glyphicon glyphicon-pencil"></span>
             </button>
             <button
-              className="btn btn-danger"
+              className="btn btn-dark"
               onClick={() => this.deleteClick(pic.id)}
             >
-              Delete
+              <span className="glyphicon glyphicon-trash"></span>
             </button>
           </div>
         </div>
@@ -105,28 +105,26 @@ class MyWork extends React.Component {
     return (
       <div className="MyWork col-md-12">
         <h1>My Work</h1>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 work-collection">
-              {
-                this.state.pictures.length === 0 ? <h4>You haven't added photos to the database yet.</h4> : myWorkComponents
-              }
-            </div>
-            <div className="col-md-4 update-form">
-              <form className="update-form" onSubmit={this.saveChanges}>
-                <h3>Update Photo Details</h3>
-                <fieldset>
-                  <label htmlFor="exampleTitle">Title</label>
-                  <input type="text" className="form-control" id="exampleTitle" value={info.name} onChange={this.nameChange} />
-                </fieldset>
-                <fieldset>
-                  <label htmlFor="exampleDesc">Description</label>
-                  <input type="text" className="form-control" id="exampleDesc" value={info.desc} onChange={this.descChange} />
-                </fieldset>
-                <button type="submit" className="btn btn-default save-btn">Save Changes</button>
-              </form>
-            </div>
+        <div className="work-collection">
+          <div className="col-md-9 work-container">
+            {
+              this.state.pictures.length === 0 ? <h4>You haven't added photos to the database yet.</h4> : myWorkComponents
+            }
           </div>
+        </div>
+        <div className="col-md-3 update-form">
+          <form className="update-form" onSubmit={this.saveChanges}>
+            <h3>Update Photo Details</h3>
+            <fieldset>
+              <label htmlFor="exampleTitle">Title</label>
+              <input type="text" className="form-control" id="exampleTitle" value={info.name} onChange={this.nameChange} />
+            </fieldset>
+            <fieldset>
+              <label htmlFor="exampleDesc">Description</label>
+              <input type="text" className="form-control" id="exampleDesc" value={info.desc} onChange={this.descChange} />
+            </fieldset>
+            <button type="submit" className="btn btn-success save-btn"><span className="glyphicon glyphicon-floppy-disk"> </span> Save Changes</button>
+          </form>
         </div>
       </div>
     );

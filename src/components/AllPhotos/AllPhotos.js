@@ -113,11 +113,9 @@ class AllPhotos extends React.Component {
     return (
       <div className="AllPhotos col-md-12">
         <h1>Search Photos</h1>
-        <div className="row">
-          <label htmlFor="search-terms" className="col-sm-6 col-sm-offset-3">
-            <input type="text" id="search-terms" className="search col-sm-8 col-sm-offset-2" onKeyUp={this.filterPics} onKeyPress={this.filterPicsBackspace} />
-          </label>
-        </div>
+        <label htmlFor="search-terms" className="col-sm-6 col-sm-offset-3">
+          <input type="text" id="search-terms" className="search col-sm-8 col-sm-offset-2" onKeyUp={this.filterPics} onKeyPress={this.filterPicsBackspace} />
+        </label>
         <Modal open={open} onClose={this.onCloseModal} center>
           <div className="preview-box">
             <img className="preview-pic" src={this.state.picPreview} alt="preview"/>
