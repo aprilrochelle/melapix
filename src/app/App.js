@@ -15,52 +15,79 @@ import Dashboard from '../components/Dashboard/Dashboard';
 import MyWork from '../components/MyWork/MyWork';
 fbConnection();
 
-const PrivateRoute = ({component: Component, authed, photog, ...rest}) => {
+const PrivateRoute = ({ component: Component, authed, photog, ...rest }) => {
   return (
     <Route
       {...rest}
       render={props =>
-        (authed === true && photog === false) ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{ pathname: '/', state: {from: props.location} }}
-          />
-        )
+
+        (authed && !photog)
+          ? (
+            <Component { ...props } />
+          )
+          : (authed && photog)
+            ?
+            (
+              <Redirect
+                to={{ pathname: '/dashboard', state: { from: props.location } }}
+              />
+            ) : (
+              <Redirect
+                to={{ pathname: '/login', state: { from: props.location } }}
+              />
+            )
       }
     />
   );
 };
 
-const PhotogRoute = ({component: Component, authed, photog, ...rest}) => {
+const PhotogRoute = ({ component: Component, authed, photog, ...rest }) => {
   return (
     <Route
       {...rest}
       render={props =>
-        (authed === true && photog === true) ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{ pathname: '/allphotos', state: {from: props.location} }}
-          />
-        )
+
+        (authed && photog)
+          ? (
+            <Component { ...props } />
+          )
+          : (authed && !photog)
+            ?
+            (
+              <Redirect
+                to={{ pathname: '/allphotos', state: { from: props.location } }}
+              />
+            ) : (
+              <Redirect
+                to={{ pathname: '/login', state: { from: props.location } }}
+              />
+            )
       }
     />
   );
 };
 
-const PublicRoute = ({component: Component, authed, ...rest}) => {
+const PublicRoute = ({ component: Component, authed, photog, ...rest }) => {
   return (
     <Route
       {...rest}
       render={props =>
-        authed === false ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{ pathname: '/', state: {from: props.location} }}
-          />
-        )
+
+        (!authed)
+          ? (
+            <Component { ...props } />
+          )
+          : (authed && photog)
+            ?
+            (
+              <Redirect
+                to={{ pathname: '/dashboard', state: { from: props.location } }}
+              />
+            ) : (
+              <Redirect
+                to={{ pathname: '/allphotos', state: { from: props.location } }}
+              />
+            )
       }
     />
   );
