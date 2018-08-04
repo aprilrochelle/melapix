@@ -2,26 +2,23 @@ import React from 'react';
 import { Alert, Button } from 'react-bootstrap';
 
 class AlertDismissable extends React.Component {
-  state = {
-    show: true,
-  };
-
-  handleDismiss = () => {
-    this.setState({ show: false });
-    this.props.canShow(false);
-  }
-
   render () {
-    const { text, showAlert } = this.props;
-    if (showAlert && this.state.show) {
+    const { text, showAlert, onDismiss } = this.props;
+    if (showAlert) {
       return (
-        <Alert bsStyle="warning">
-          <Button onClick={this.handleDismiss}>Hide Alert</Button>
-          { text }
+        <Alert className="mp-alert col-sm-4 col-sm-offset-4">
+          <div className="row">
+            <div className="col-sm-6 text-left">
+              { text }
+            </div>
+            <div className="col-sm-6 text-right">
+              <Button onClick={onDismiss}>&times;</Button>
+            </div>
+          </div>
         </Alert>
       );
     } else {
-      return (<div></div>);
+      return null;
     }
   }
 }

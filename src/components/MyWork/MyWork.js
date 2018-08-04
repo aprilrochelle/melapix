@@ -86,8 +86,8 @@ class MyWork extends React.Component {
     this.setState({ info: tempImage });
   }
 
-  changeShow = (val) => {
-    this.setState({showAlert: val});
+  onDismiss = () => {
+    this.setState({showAlert: false});
   }
 
   render () {
@@ -118,18 +118,11 @@ class MyWork extends React.Component {
     return (
       <div className="MyWork col-md-12">
         <h1>My Work</h1>
-        {
-          this.state.showAlert ?
-            (
-              <AlertDismissable
-                text="Changes Saved."
-                showAlert={this.state.showAlert}
-                canShow={this.changeShow()}
-              />
-            ) : (
-              <div></div>
-            )
-        }
+        <AlertDismissable
+          text="Changes Saved."
+          showAlert={this.state.showAlert}
+          onDismiss={this.onDismiss}
+        />
         <div className="work-collection">
           <div className="col-md-9 work-container">
             {

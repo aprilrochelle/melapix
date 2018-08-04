@@ -1,0 +1,8 @@
+@import 'styles/_colors';
+
+.MyWork .alert.alert-info {
+  vertical-align: middle;
+  background-color: $accent;
+  border: 1px solid $accent;
+  color: $lightest;
+}
