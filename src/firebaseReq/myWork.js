@@ -53,7 +53,6 @@ const putRequest = (id, imageObj) => {
       .put(`${constants.firebaseConfig.databaseURL}/pics/${id}.json`, imageObj)
       .then((res) => {
         resolve(res.data);
-        alert('Changes saved.');
       })
       .catch((err) => {
         reject(err);
