@@ -6,7 +6,7 @@ import Home from '../components/Home/Home';
 import Login from '../components/Login/Login';
 import Register from '../components/Register/Register';
 import MyCollection from '../components/MyCollection/MyCollection';
-import Navbar from '../components/Navbar/Navbar';
+import Navigate from '../components/Navigate/Navigate';
 import SinglePic from '../components/SinglePic/SinglePic';
 import './App.css';
 import fbConnection from '../firebaseReq/fbConnect';
@@ -107,7 +107,7 @@ class App extends Component {
       <div className="App text-center">
         <BrowserRouter>
           <div>
-            <Navbar
+            <Navigate
               authed={this.state.authed}
               photog={this.state.photog}
               rollOut={this.rollOut}
