@@ -1,8 +1,20 @@
 @import 'styles/_colors';
 
-.MyWork .alert.alert-info {
-  vertical-align: middle;
-  background-color: $accent;
-  border: 1px solid $accent;
+.mp-alert {
+  background-color: $medgrey;
+  position: absolute;
+  z-index: 1000;
   color: $lightest;
+  border: none;
+  opacity: .8;
+}
+
+.mp-alert .close-btn {
+  border-radius: 50%;
+  background-color: $dark;
+  color: $light;
+}
+
+.mp-alert .close-btn:hover {
+  background-color: $medgrey;
 }
