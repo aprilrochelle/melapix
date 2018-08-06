@@ -1,5 +1,6 @@
 import React from 'react';
 import auth from '../../firebaseReq/auth';
+import AlertDismissable from '../Alerts/Alerts';
 import myWork from '../../firebaseReq/myWork';
 import './MyWork.css';
 
@@ -18,6 +19,7 @@ class MyWork extends React.Component {
       desc: '',
       photogId: '',
     },
+    showAlert: false,
   }
 
   componentWillMount () {
@@ -60,6 +62,7 @@ class MyWork extends React.Component {
     myWork
       .putRequest(info.id, newImgInfo)
       .then(() => {
+        this.setState({showAlert: true});
         myWork
           .getMyWork(auth.getUid())
           .then((pics) => {
@@ -81,6 +84,10 @@ class MyWork extends React.Component {
     const tempImage = { ...this.state.info };
     tempImage.desc = e.target.value;
     this.setState({ info: tempImage });
+  }
+
+  onDismiss = () => {
+    this.setState({showAlert: false});
   }
 
   render () {
@@ -111,6 +118,11 @@ class MyWork extends React.Component {
     return (
       <div className="MyWork col-md-12">
         <h1>My Work</h1>
+        <AlertDismissable
+          text="Changes Saved."
+          showAlert={this.state.showAlert}
+          onDismiss={this.onDismiss}
+        />
         <div className="work-collection">
           <div className="col-md-9 work-container">
             {

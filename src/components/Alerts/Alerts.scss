@@ -1,0 +1,20 @@
+@import 'styles/_colors';
+
+.mp-alert {
+  background-color: $medgrey;
+  position: absolute;
+  z-index: 1000;
+  color: $lightest;
+  border: none;
+  opacity: .9;
+}
+
+.mp-alert .close-btn {
+  border-radius: 50%;
+  background-color: $dark;
+  color: $light;
+}
+
+.mp-alert .close-btn:hover {
+  background-color: $medgrey;
+}

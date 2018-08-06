@@ -34,34 +34,12 @@ const getOnePic = (id) => {
   });
 };
 
-const postRequest = (id, newImage) => {
+const postRequest = (newImage) => {
   return new Promise((resolve, reject) => {
-    //  First grab the user's existing photo collection.
     axios
-      .get(`${constants.firebaseConfig.databaseURL}/myCollection.json?orderBy="uid"&equalTo="${id}"`)
+      .post(`${constants.firebaseConfig.databaseURL}/myCollection.json`, newImage)
       .then((res) => {
-        const myPics = [];
-        if (res.data !== null) {
-          Object.keys(res.data).forEach(key => {
-            myPics.push(res.data[key]);
-          });
-          resolve(myPics);
-          //  Filter through user's collection to check for a match.
-          const filteredPics = myPics.filter(myPic => {
-            return (myPic.picId === newImage.picId);
-          });
-          if (filteredPics.length > 0) {
-            alert('You have already purchased this image. To view, go to My Collection.');
-          } else {
-            // If the user collection is empty, post the image to the collection.
-            axios
-              .post(`${constants.firebaseConfig.databaseURL}/myCollection.json`, newImage)
-              .then((res) => {
-                resolve(res);
-                alert('Image saved.');
-              });
-          }
-        }
+        resolve(res);
       })
       .catch((err) => {
         reject(err);
@@ -82,17 +60,4 @@ const deleteRequest = (id) => {
   });
 };
 
-const putRequest = (id, imageObj) => {
-  return new Promise((resolve, reject) => {
-    axios
-      .put(`${constants.firebaseConfig.databaseURL}/myCollection/${id}.json`, imageObj)
-      .then((res) => {
-        resolve(res.data);
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
-};
-
-export default { getMyPics, getOnePic, postRequest, deleteRequest, putRequest };
+export default { getMyPics, getOnePic, postRequest, deleteRequest };
