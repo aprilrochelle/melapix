@@ -2,7 +2,7 @@
 
 .styles_modal__gNwvD {
   margin-top: 80px;
-  max-width: 80%;
+  max-width: 70%;
 }
 
 .preview-box {
@@ -25,5 +25,7 @@
     list-style-type: none;
     width: 90%;
     margin: 0 auto;
+    height: 75vh;
+    overflow: scroll;
   }
 }
