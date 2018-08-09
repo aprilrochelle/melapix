@@ -59,42 +59,38 @@ class Navigate extends React.Component {
     }
     return (
       <div className="Navigate col-md-12">
-        <Navbar inverse collapseOnSelect fixedTop>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <Link to="/" className="navbar-brand">
-                <img className="logo" src={require('./images/melapixWhite.png')} alt="melapix-logo" />
-              </Link>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav>
-            </Nav>
-            {navDisplay}
-          </Navbar.Collapse>
-        </Navbar>
+        {
+          photog ? (
+            <Navbar className="photog-nav" inverse collapseOnSelect fixedTop>
+              <Navbar.Header>
+                <Navbar.Brand>
+                  <Link to="/" className="navbar-brand">
+                    <img className="logo" src={require('./images/melapixWhiteBlack.png')} alt="melapix-logo" />
+                  </Link>
+                </Navbar.Brand>
+                <Navbar.Toggle />
+              </Navbar.Header>
+              <Navbar.Collapse>
+                {navDisplay}
+              </Navbar.Collapse>
+            </Navbar>
+          ) : (
+            <Navbar inverse collapseOnSelect fixedTop>
+              <Navbar.Header>
+                <Navbar.Brand>
+                  <Link to="/" className="navbar-brand">
+                    <img className="logo" src={require('./images/melapixWhite.png')} alt="melapix-logo" />
+                  </Link>
+                </Navbar.Brand>
+                <Navbar.Toggle />
+              </Navbar.Header>
+              <Navbar.Collapse>
+                {navDisplay}
+              </Navbar.Collapse>
+            </Navbar>
+          )
+        }
       </div>
-      // <div className="Navbar">
-      //   <nav className="navbar navbar-inverse navbar-fixed-top">
-      //     <div className="container-fluid">
-      //       <div className="navbar-header">
-      //         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-      //           <span className="sr-only">Toggle navigation</span>
-      //           <span className="icon-bar"></span>
-      //           <span className="icon-bar"></span>
-      //           <span className="icon-bar"></span>
-      //         </button>
-      //         <Link to="/" className="navbar-brand navbar-form">
-      //           <img className="logo" src={require('./images/melapixWhite.png')} alt="melapix-logo" />
-      //         </Link>
-      //       </div>
-      //       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      //         {navDisplay}
-      //       </div>
-      //     </div>
-      //   </nav>
-      // </div>
     );
   }
 }
