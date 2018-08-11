@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import auth from '../../firebaseReq/auth';
+import uzers from '../../firebaseReq/users';
 import './Navigate.css';
 
 class Navigate extends React.Component {
@@ -12,8 +14,31 @@ class Navigate extends React.Component {
     rollOut: PropTypes.func.isRequired,
   }
 
+  state = {
+    firstName: '',
+    lastName: '',
+  }
+
+  componentDidMount () {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        uzers
+          .getUserById(user.uid)
+          .then((userAccount) => {
+            this.setState({firstName: userAccount.firstName, lastName: userAccount.lastName});
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      } else {
+        this.setState({firstName: '', lastName: ''});
+      }
+    });
+  }
+
   render () {
     const { authed, photog, rollOut } = this.props;
+    const { firstName, lastName } = this.state;
     const logoutClick = () => {
       auth.logoutUser();
       rollOut();
@@ -71,6 +96,9 @@ class Navigate extends React.Component {
                 <Navbar.Toggle />
               </Navbar.Header>
               <Navbar.Collapse>
+                <Navbar.Text>
+                  {firstName} {lastName}
+                </Navbar.Text>
                 {navDisplay}
               </Navbar.Collapse>
             </Navbar>
@@ -85,6 +113,9 @@ class Navigate extends React.Component {
                 <Navbar.Toggle />
               </Navbar.Header>
               <Navbar.Collapse>
+                <Navbar.Text>
+                  {firstName} {lastName}
+                </Navbar.Text>
                 {navDisplay}
               </Navbar.Collapse>
             </Navbar>
