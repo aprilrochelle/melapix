@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AlertDismissable from '../Alerts/Alerts';
 import auth from '../../firebaseReq/auth';
 import './Login.css';
 
@@ -9,6 +10,8 @@ class Login extends React.Component {
       email: 'test@test1.com',
       password: 'a12345',
     },
+    showAlert: false,
+    alertText: '',
   }
 
   loginClickEvent = e => {
@@ -21,6 +24,7 @@ class Login extends React.Component {
       })
       .catch(error => {
         console.error('error with login', error);
+        this.setState({showAlert: true, alertText: error.message});
       });
   };
 
@@ -36,10 +40,19 @@ class Login extends React.Component {
     this.setState({user: tempUser});
   };
 
+  onDismiss = () => {
+    this.setState({showAlert: false});
+  }
+
   render () {
     const { user } = this.state;
     return (
       <div className="Login col-xs-12">
+        <AlertDismissable
+          text={this.state.alertText}
+          showAlert={this.state.showAlert}
+          onDismiss={this.onDismiss}
+        />
         <div id="login-form">
           <form className="form-horizontal col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 formBackground">
             <h1 className="text-center">Login</h1>

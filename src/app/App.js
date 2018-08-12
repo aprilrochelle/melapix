@@ -102,21 +102,23 @@ class App extends Component {
   componentDidMount () {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        uzers
-          .getUserById(user.uid)
-          .then((userAccount) => {
-            if (userAccount.isPhotog) {
-              this.setState({authed: true, photog: true});
+        setTimeout(() => {
+          uzers
+            .getUserById(user.uid)
+            .then((userAccount) => {
+              if (userAccount.isPhotog) {
+                this.setState({authed: true, photog: true});
 
-            } else if (!userAccount.isPhotog) {
-              this.setState({authed: true, photog: false});
-            }
-          })
-          .catch(err => {
-            console.error(err);
-          });
+              } else if (!userAccount.isPhotog) {
+                this.setState({authed: true, photog: false});
+              }
+            })
+            .catch(err => {
+              console.error(err);
+            });
+        }, 1000);
       } else {
-        this.setState({authed: false});
+        this.setState({authed: false, photog: false});
       }
     });
   }
