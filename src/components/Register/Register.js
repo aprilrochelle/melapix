@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import firebase from 'firebase';
+import AlertDismissable from '../Alerts/Alerts';
 import auth from '../../firebaseReq/auth';
 import users from '../../firebaseReq/users';
 import './Register.css';
@@ -15,6 +16,8 @@ class Register extends React.Component {
       isPhotog: false,
       uid: '',
     },
+    showAlert: false,
+    alertText: '',
   }
 
   registerClickEvent = e => {
@@ -32,6 +35,7 @@ class Register extends React.Component {
       })
       .catch((err) => {
         console.error('error with registering user', err);
+        this.setState({showAlert: true, alertText: err.message});
       });
   }
 
@@ -65,10 +69,19 @@ class Register extends React.Component {
     this.setState({user: tempUser});
   }
 
+  onDismiss = () => {
+    this.setState({showAlert: false});
+  }
+
   render () {
     const { user } = this.state;
     return (
       <div className="Register col-xs-12">
+        <AlertDismissable
+          text={this.state.alertText}
+          showAlert={this.state.showAlert}
+          onDismiss={this.onDismiss}
+        />
         <div id="register-form">
           <form className="form-horizontal col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 formBackground">
             <h1 className="text-center">Get Registered!</h1>
