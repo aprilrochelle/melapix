@@ -38,7 +38,7 @@ class AllPhotos extends React.Component {
           return (pic.picId === newImage.picId);
         });
 
-        //  If a pic in the user's collection matces the selected image's id, show an alert and prevent saving again.
+        //  If a pic in the user's collection matches the selected image's id, show an alert and prevent saving again.
         if (filteredPics.length > 0) {
           this.setState({showAlert: true, alertText: 'You have already purchased this image. Please visit My Collection to view.'});
         } else {

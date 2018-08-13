@@ -12,6 +12,7 @@ class AlertDismissable extends React.Component {
 
   render () {
     const { text, showAlert, onDismiss } = this.props;
+    //  If showAlert is true, render the alert.
     if (showAlert) {
       return (
         <Alert className="mp-alert col-sm-4 col-sm-offset-4">
