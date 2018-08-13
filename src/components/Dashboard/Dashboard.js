@@ -11,6 +11,8 @@ class Dashboard extends React.Component {
 
   componentDidMount () {
     const myId = firebase.auth().currentUser.uid;
+
+    //  Gets all pics that have been saved by users, then filters to return only the pics whose photogIds match the current user's id.
     favorited
       .getFavTotals()
       .then((savedPics) => {
@@ -35,6 +37,7 @@ class Dashboard extends React.Component {
       );
     });
 
+    //  Creates appropriate photographer dahsboard display based on whether any pics have been saved by users.
     let photogDisplay;
     (data.length > 0) ?
       (
@@ -56,6 +59,7 @@ class Dashboard extends React.Component {
       <div className="Dashboard col-md-12">
         <h1>My Dashboard</h1>
         {
+          //  Only show a bar chart if this photographer's pics have been saved by users.
           (data.length > 0) ?
             (
               <ResponsiveContainer width="100%" height={500}>

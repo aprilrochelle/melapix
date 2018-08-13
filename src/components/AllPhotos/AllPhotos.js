@@ -79,6 +79,7 @@ class AllPhotos extends React.Component {
   }
 
   filterPics = (e) => {
+    //  Filters through pic array with each key up.
     const originalStateCopy = [...this.state.originalState];
     const searchTerms = e.target.value.toLowerCase();
     const picsFiltered = originalStateCopy.filter(pic => {
@@ -92,6 +93,7 @@ class AllPhotos extends React.Component {
   }
 
   filterPicsBackspace = (e) => {
+    //  Filters through pic array with each press of delete or backspace key.
     if (e.keyCode === 8 || e.keyCode === 46) {
       const originalStateCopy = [...this.state.originalState];
       const searchTerms = e.target.value.toLowerCase();
