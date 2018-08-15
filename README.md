@@ -5,7 +5,7 @@ Melapix is your go-to online source for high-style, high resolution stock photo 
 
 Standard users of this application are able to search, view and save images to their collection for later usage.
 
-Users with a seller (photographer) account are able to view, edit and delete thier images, as well as see data displaying their images that have been saved by other users.
+Users with a seller (photographer) account are able to view, edit and delete their images, as well as see data displaying their images that have been saved by other users.
 
 ## Live Demo
 Check it out here: [Melapix](https://aw-melapix.firebaseapp.com)
