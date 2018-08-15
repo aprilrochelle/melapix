@@ -7,8 +7,8 @@ import './Login.css';
 class Login extends React.Component {
   state = {
     user: {
-      email: 'test@test1.com',
-      password: 'a12345',
+      email: '',
+      password: '',
     },
     showAlert: false,
     alertText: '',
@@ -90,19 +90,19 @@ class Login extends React.Component {
               </div>
             </div>
             <div className="form-group">
-              <div className="col-sm-offset-2 col-sm-10 text-center">
-                <Link to="/register">Need to Register?</Link>
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="col-sm-offset-2 col-sm-10">
+              <div className="col-sm-12">
                 <button
                   type="submit"
-                  className="btn btn-success col-xs-12"
+                  className="btn btn-success col-xs-6 col-xs-offset-3"
                   onClick={this.loginClickEvent}
                 >
                   Login
                 </button>
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="col-sm-12 text-center">
+                <Link to="/register">Need to Register?</Link>
               </div>
             </div>
           </form>

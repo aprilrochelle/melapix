@@ -153,24 +153,25 @@ class Register extends React.Component {
             </div>
             <div className="checkbox">
               <label>
-                <input type="checkbox" onClick={this.toggle.bind(this)}/> This is a photographer account.
+                <input type="checkbox" onClick={this.toggle.bind(this)}/> <b>Check here if you are creating a seller account.</b>
               </label>
             </div>
             <br/>
             <div className="form-group">
-              <div className="col-sm-offset-2 col-sm-10 text-center">
-                <Link to="/login">Need to Login?</Link>
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="col-sm-offset-2 col-sm-10">
+              <div className="col-sm-12">
                 <button
                   type="submit"
-                  className="btn btn-success col-xs-12"
+                  className="btn btn-success col-xs-6 col-xs-offset-3"
                   onClick={this.registerClickEvent}
                 >
                   Register
                 </button>
+              </div>
+            </div>
+            <br/>
+            <div className="form-group">
+              <div className="col-sm-12 text-center">
+                <Link to="/login">Need to Login?</Link>
               </div>
             </div>
           </form>
