@@ -94,7 +94,25 @@ Once changes are saved, they are immediately reflected
 1. Clone down this repo and cd into project.
 2. Get API keys by creating a new project at `firebase.com`.
 3. Copy `src/constants.example.js` to `constants.js` and add in your FirebaseConfig data.
-4. Setup Firebase using seed data from `db` folder.
+4. Setup Firebase database using seed data from `db/seedData.json`.
+5.  Copy and paste the following database rules: `{
+  "rules": {
+    ".read": true,
+    ".write": true,
+      "myCollection": {
+        ".indexOn": "uid"
+      },
+        "userAccounts": {
+        ".indexOn": "uid"
+      },
+       "pics": {
+        ".indexOn": "photogId"
+      },
+        "totals": {
+        ".indexOn": "picId"
+      }
+  }
+}`
 4. In your terminal, run `npm install` in the root directory.
 5. Type `npm start` to serve up locally.
 
@@ -102,6 +120,7 @@ Once changes are saved, they are immediately reflected
 [April Watson](https://github.com/aprilrochelle)
 
 with special thanks to NSS front-end instructors:
+
 [Zoë Ames](https://github.com/zoeames)
 
 [Lauren Rouse](https://github.com/rousell) (Capstone Mentor)
