@@ -130,7 +130,7 @@ class App extends Component {
             });
         }, 1000);
       } else {
-        this.setState({authed: false});
+        this.setState({authed: false, photog: false});
       }
     });
   }
