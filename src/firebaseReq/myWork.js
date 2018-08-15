@@ -1,6 +1,7 @@
 import axios from 'axios';
 import constants from '../constants';
 
+//  Retrieves photos owned by current photographer user
 const getMyWork = (id) => {
   return new Promise((resolve, reject) => {
     axios
@@ -21,6 +22,7 @@ const getMyWork = (id) => {
   });
 };
 
+//  Deletes photo from database
 const deleteRequest = (id) => {
   return new Promise((resolve, reject) => {
     axios
@@ -34,6 +36,7 @@ const deleteRequest = (id) => {
   });
 };
 
+//  Retrieves single image by id
 const getOneImage = (id) => {
   return new Promise((resolve, reject) => {
     axios
@@ -47,6 +50,7 @@ const getOneImage = (id) => {
   });
 };
 
+//  Updates image details
 const putRequest = (id, imageObj) => {
   return new Promise((resolve, reject) => {
     axios

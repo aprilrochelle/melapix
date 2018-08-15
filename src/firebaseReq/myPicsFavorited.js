@@ -1,6 +1,7 @@
 import axios from 'axios';
 import constants from '../constants';
 
+//  Retrieves all images that have been saved by users
 const getFavTotals = () => {
   return new Promise((resolve, reject) => {
     axios
@@ -21,6 +22,7 @@ const getFavTotals = () => {
   });
 };
 
+//  Edits total saves by image id
 const addToTotal = (totalObj, id) => {
   return new Promise((resolve, reject) => {
     axios

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import constants from '../constants';
 
+//  Retrieves images by user id
 const getMyPics = (id) => {
   return new Promise((resolve, reject) => {
     axios
@@ -21,6 +22,7 @@ const getMyPics = (id) => {
   });
 };
 
+//  Retrieves a single image by its firebase id
 const getOnePic = (id) => {
   return new Promise((resolve, reject) => {
     axios
@@ -34,6 +36,7 @@ const getOnePic = (id) => {
   });
 };
 
+//  Adds a new image object to the user's collection
 const postRequest = (newImage) => {
   return new Promise((resolve, reject) => {
     axios
@@ -47,6 +50,7 @@ const postRequest = (newImage) => {
   });
 };
 
+//  Deletes an image from the database
 const deleteRequest = (id) => {
   return new Promise((resolve, reject) => {
     axios

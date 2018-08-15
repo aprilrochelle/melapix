@@ -38,7 +38,7 @@ class AllPhotos extends React.Component {
           return (pic.picId === newImage.picId);
         });
 
-        //  If a pic in the user's collection matces the selected image's id, show an alert and prevent saving again.
+        //  If a pic in the user's collection matches the selected image's id, show an alert and prevent saving again.
         if (filteredPics.length > 0) {
           this.setState({showAlert: true, alertText: 'You have already purchased this image. Please visit My Collection to view.'});
         } else {
@@ -68,6 +68,7 @@ class AllPhotos extends React.Component {
   }
 
   componentDidMount () {
+    //  Retrieves all photos in database
     picRequests
       .getAllPics()
       .then((pictures) => {
@@ -79,6 +80,7 @@ class AllPhotos extends React.Component {
   }
 
   filterPics = (e) => {
+    //  Filters through pic array with each key up.
     const originalStateCopy = [...this.state.originalState];
     const searchTerms = e.target.value.toLowerCase();
     const picsFiltered = originalStateCopy.filter(pic => {
@@ -92,6 +94,7 @@ class AllPhotos extends React.Component {
   }
 
   filterPicsBackspace = (e) => {
+    //  Filters through pic array with each press of delete or backspace key.
     if (e.keyCode === 8 || e.keyCode === 46) {
       const originalStateCopy = [...this.state.originalState];
       const searchTerms = e.target.value.toLowerCase();
@@ -107,14 +110,17 @@ class AllPhotos extends React.Component {
     }
   }
 
+  //  Opens modal with larger version of selected image
   onOpenModal = (previewPath) => {
     this.setState({picPreview: previewPath, open: true});
   };
 
+  //  Closes modal
   onCloseModal = () => {
     this.setState({ open: false });
   };
 
+  //  Closes alert
   onDismiss = () => {
     this.setState({showAlert: false});
   }

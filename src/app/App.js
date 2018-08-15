@@ -20,18 +20,21 @@ const PrivateRoute = ({ component: Component, authed, photog, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-
+        //  Is user authorized but not a photographer? If so, route to path selected.
         (authed && !photog)
           ? (
             <Component { ...props } />
           )
+          //  Is user both authed and photographer? Redirect to Dashboard.
           : (authed && photog)
             ?
             (
               <Redirect
                 to={{ pathname: '/dashboard', state: { from: props.location } }}
               />
-            ) : (
+            ) :
+            //  If user is not authed, redirect to Login.
+            (
               <Redirect
                 to={{ pathname: '/login', state: { from: props.location } }}
               />
@@ -46,18 +49,21 @@ const PhotogRoute = ({ component: Component, authed, photog, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-
+        //  Is user both authed and photographer? Route to path selected.
         (authed && photog)
           ? (
             <Component { ...props } />
           )
+          //  Is user authorized but not a photographer? If so, redirect to All Photos.
           : (authed && !photog)
             ?
             (
               <Redirect
                 to={{ pathname: '/allphotos', state: { from: props.location } }}
               />
-            ) : (
+            ) :
+            //  If user is not authed, redirect to Login.
+            (
               <Redirect
                 to={{ pathname: '/login', state: { from: props.location } }}
               />
@@ -72,18 +78,21 @@ const PublicRoute = ({ component: Component, authed, photog, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-
+        //  If user is not authed, render the selected route.
         (!authed)
           ? (
             <Component { ...props } />
           )
+          //  If user is both authed and a photographer, redirect to Dashboard.
           : (authed && photog)
             ?
             (
               <Redirect
                 to={{ pathname: '/dashboard', state: { from: props.location } }}
               />
-            ) : (
+            ) :
+            //  If user is authed but not a photographer, redirect to All Photos.
+            (
               <Redirect
                 to={{ pathname: '/allphotos', state: { from: props.location } }}
               />
@@ -102,13 +111,16 @@ class App extends Component {
   componentDidMount () {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        //  When a user logs in, wait one second then retrieve the user's account info.
         setTimeout(() => {
           uzers
             .getUserById(user.uid)
             .then((userAccount) => {
+              //  If the user's account type is photographer, set both authed and photog to true.
               if (userAccount.isPhotog) {
                 this.setState({authed: true, photog: true});
 
+                //  If the user's account type is not photographer, set authed to true and photog to false.
               } else if (!userAccount.isPhotog) {
                 this.setState({authed: true, photog: false});
               }
@@ -118,7 +130,7 @@ class App extends Component {
             });
         }, 1000);
       } else {
-        this.setState({authed: false, photog: false});
+        this.setState({authed: false});
       }
     });
   }

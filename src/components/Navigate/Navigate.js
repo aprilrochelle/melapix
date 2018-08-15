@@ -39,11 +39,14 @@ class Navigate extends React.Component {
   render () {
     const { authed, photog, rollOut } = this.props;
     const { firstName, lastName } = this.state;
+
+    //  Logs out current user and sets authed state to false.
     const logoutClick = () => {
       auth.logoutUser();
       rollOut();
     };
 
+    //  Navbar links display based on authorization status and user type.
     let navDisplay;
     if (authed && !photog) {
       navDisplay = (

@@ -9,10 +9,12 @@ class Pics extends React.Component {
     onClick: PropTypes.func.isRequired,
   }
 
+  //  Adds selected image to user's collection
   addToCollection = () => {
     this.props.addToMyPics(this.props.details);
   }
 
+  //  Opens modal on image click
   modalClick = (image) => {
     this.props.onClick(image);
   }

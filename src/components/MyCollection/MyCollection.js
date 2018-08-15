@@ -9,6 +9,7 @@ class MyCollection extends React.Component {
   }
 
   componentWillMount () {
+    //  Retrieves all pics saved by the current user
     myPics
       .getMyPics(auth.getUid())
       .then((pics) => {
@@ -20,6 +21,7 @@ class MyCollection extends React.Component {
   }
 
   deleteClick = (id) => {
+    //  Deletes selected image from user's collection
     myPics
       .deleteRequest(id)
       .then(() => {

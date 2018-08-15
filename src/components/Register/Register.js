@@ -39,36 +39,42 @@ class Register extends React.Component {
       });
   }
 
+  //  Sets state of firstName to the input value
   firstNameChange = e => {
     const tempUser = {...this.state.user};
     tempUser.firstName = e.target.value;
     this.setState({user: tempUser});
   }
 
+  //  Sets state of lastName to the input value
   lastNameChange = e => {
     const tempUser = {...this.state.user};
     tempUser.lastName = e.target.value;
     this.setState({user: tempUser});
   }
 
+  //  Sets state of user email to the input value
   emailChange = e => {
     const tempUser = {...this.state.user};
     tempUser.email = e.target.value;
     this.setState({user: tempUser});
   }
 
+  //  Sets state of user password to the input value
   passwordChange = e => {
     const tempUser = {...this.state.user};
     tempUser.password = e.target.value;
     this.setState({user: tempUser});
   }
 
+  //  Sets state of isPhotog to true if checkbox is checked
   toggle (e) {
     const tempUser = {...this.state.user};
     tempUser.isPhotog = !this.state.user.isPhotog;
     this.setState({user: tempUser});
   }
 
+  //  Closes alert
   onDismiss = () => {
     this.setState({showAlert: false});
   }
