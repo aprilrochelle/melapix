@@ -14,6 +14,8 @@ class SinglePic extends React.Component {
 
   componentDidMount () {
     const id = this.props.match.params.id;
+
+    //  Retrieves selected image by id
     myPics
       .getOnePic(id)
       .then((image) => {

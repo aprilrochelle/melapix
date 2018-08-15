@@ -28,18 +28,21 @@ class Login extends React.Component {
       });
   };
 
+  //  Sets state of user email to the input value
   emailChange = e => {
     const tempUser = { ...this.state.user };
     tempUser.email = e.target.value;
     this.setState({user: tempUser});
   };
 
+  //  Sets state of user password to the input value
   passwordChange = e => {
     const tempUser = { ...this.state.user };
     tempUser.password = e.target.value;
     this.setState({user: tempUser});
   };
 
+  //  Closes alert
   onDismiss = () => {
     this.setState({showAlert: false});
   }

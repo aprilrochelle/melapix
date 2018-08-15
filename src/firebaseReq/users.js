@@ -1,6 +1,7 @@
 import axios from 'axios';
 import constants from '../constants';
 
+//  Adds new user account info to database
 const postNewUser = (newUser) => {
   return new Promise((resolve, reject) => {
     axios
@@ -14,6 +15,7 @@ const postNewUser = (newUser) => {
   });
 };
 
+//  Gets single user by uid
 const getUserById = (id) => {
   return new Promise((resolve, reject) => {
     axios

@@ -23,6 +23,7 @@ class MyWork extends React.Component {
   }
 
   componentWillMount () {
+    //  Retrieves all images owned by the current photographer user
     myWork
       .getMyWork(auth.getUid())
       .then((pics) => {
@@ -34,6 +35,7 @@ class MyWork extends React.Component {
   }
 
   deleteClick = (id) => {
+    //  Deletes selected image
     myWork
       .deleteRequest(id)
       .then(() => {
@@ -53,12 +55,16 @@ class MyWork extends React.Component {
 
   saveChanges = e => {
     const { info, origInfo } = this.state;
+
+    // Create an object for updated image info
     const newImgInfo = {};
     newImgInfo.name = info.name;
     newImgInfo.image = info.image;
     newImgInfo.desc = info.desc;
     newImgInfo.photogId = info.photogId;
     e.preventDefault();
+
+    //  Makes put request to change image title/keywords, then updates the state of the image array and resets update form.
     myWork
       .putRequest(info.id, newImgInfo)
       .then(() => {
@@ -74,18 +80,21 @@ class MyWork extends React.Component {
       });
   }
 
+  //  Sets state of image name to the input value
   nameChange = e => {
     const tempImage = { ...this.state.info };
     tempImage.name = e.target.value;
     this.setState({ info: tempImage });
   }
 
+  //  Sets state of image description to the input value
   descChange = e => {
     const tempImage = { ...this.state.info };
     tempImage.desc = e.target.value;
     this.setState({ info: tempImage });
   }
 
+  //  Closes alert
   onDismiss = () => {
     this.setState({showAlert: false});
   }

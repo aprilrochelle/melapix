@@ -68,6 +68,7 @@ class AllPhotos extends React.Component {
   }
 
   componentDidMount () {
+    //  Retrieves all photos in database
     picRequests
       .getAllPics()
       .then((pictures) => {
@@ -109,14 +110,17 @@ class AllPhotos extends React.Component {
     }
   }
 
+  //  Opens modal with larger version of selected image
   onOpenModal = (previewPath) => {
     this.setState({picPreview: previewPath, open: true});
   };
 
+  //  Closes modal
   onCloseModal = () => {
     this.setState({ open: false });
   };
 
+  //  Closes alert
   onDismiss = () => {
     this.setState({showAlert: false});
   }
